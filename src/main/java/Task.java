@@ -12,7 +12,6 @@ public abstract class Task {
         this.name = name;
         this.isDone = false;
     }
-
     protected String checkDone() {
         return isDone ? "X" : " ";
     }

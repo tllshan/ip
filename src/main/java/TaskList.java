@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.concurrent.ForkJoinTask;
 
 /**
  * The TaskList class represents a collection of tasks managed by the ChatterChicken task manager.
@@ -8,7 +7,6 @@ import java.util.concurrent.ForkJoinTask;
  * along with their respective indexes. Tasks can be of different types: ToDo, Deadline, and Event.
  */
 public class TaskList implements Iterable<Task> {
-
     private ArrayList<Task> taskList;
 
     public TaskList(ArrayList<Task> taskList) {

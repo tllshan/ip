@@ -46,7 +46,7 @@ public class ChatterChicken {
      * Initiates the main loop of the ChatterChicken application.
      * Reads user input, processes commands, and provides responses until the user chooses to exit.
      * Catches and displays exceptions.
-     */
+    */
     private void run() {
         try (Scanner sc = new Scanner(System.in)) {
             tasks = new TaskList(storage.loadTasksFromFile());

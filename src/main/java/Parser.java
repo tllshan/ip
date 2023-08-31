@@ -122,7 +122,6 @@ public class Parser {
         return new Event(taskDescription, name, parseDate(start), parseDate(end));
     }
 
-
     /**
      * Parses a string into a LocalDate object.
      *
