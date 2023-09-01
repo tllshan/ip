@@ -1,12 +1,6 @@
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class ChatterChicken {
-
-    public static final String LINE = "\n    _____________________________________________________________________________\n";
-
-    public static final String INDENT = "      ";
-    public static final String INDENT_BIG = "        ";
 
     public static final String PATH = "src/main/data/task-list.txt";
 
@@ -15,9 +9,12 @@ public class ChatterChicken {
     private Parser parser;
     private Storage storage;
 
+    private Ui ui;
+
     public ChatterChicken() {
         this.parser = new Parser();
         this.storage = new Storage(parser);
+        this.ui = new Ui();
     }
 
     public static void main(String[] args) {
@@ -25,22 +22,6 @@ public class ChatterChicken {
         chatterChicken.run();
     }
 
-    /**
-     * Displays a greeting message to the user to introduce ChatterChicken.
-     */
-    private void greet() {
-        System.out.println(LINE
-                + INDENT + "Hello! I'm ChatterChicken!\n"
-                + INDENT + "What can I do for you?"
-                + LINE);
-    }
-
-    /**
-     * Displays a farewell message to the user as they exit the ChatterChicken application.
-     */
-    private void exit() {
-        System.out.println(LINE + INDENT + "Bye. Hope to see you again soon!" + LINE);
-    }
 
     /**
      * Initiates the main loop of the ChatterChicken application.
@@ -49,8 +30,8 @@ public class ChatterChicken {
     */
     private void run() {
         try (Scanner sc = new Scanner(System.in)) {
-            tasks = new TaskList(storage.loadTasksFromFile());
-            greet();
+            tasks = new TaskList(storage.loadTasksFromFile(), ui);
+            ui.displayGreeting();
             String input = sc.nextLine();
             while (!input.equals("bye")) {
                 Command command = parser.parseInput(input);
@@ -61,7 +42,7 @@ public class ChatterChicken {
         } catch (CCException e) {
             System.err.println(e.getMessage());
         }
-        exit();
+        ui.displayFarewell();
     }
 
     /**
@@ -72,7 +53,6 @@ public class ChatterChicken {
     private void executeCommand(Command command) throws CCException {
         String action = command.getAction();
         String taskDescription = command.getTaskDescription();
-        String output = "";
         switch (action) {
             case "list":
                 tasks.printList();
