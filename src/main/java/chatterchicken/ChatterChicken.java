@@ -1,3 +1,9 @@
+package chatterchicken;
+
+import chatterchicken.parser.Parser;
+import chatterchicken.storage.Storage;
+import chatterchicken.tasklist.TaskList;
+import chatterchicken.ui.Ui;
 import java.util.Scanner;
 
 public class ChatterChicken {
@@ -6,10 +12,10 @@ public class ChatterChicken {
 
     private TaskList tasks;
 
-    private Parser parser;
-    private Storage storage;
+    private final Parser parser;
+    private final Storage storage;
 
-    private Ui ui;
+    private final Ui ui;
 
     public ChatterChicken() {
         this.parser = new Parser();
@@ -24,7 +30,7 @@ public class ChatterChicken {
 
 
     /**
-     * Initiates the main loop of the ChatterChicken application.
+     * Initiates the main loop of the chatterchicken.ChatterChicken application.
      * Reads user input, processes commands, and provides responses until the user chooses to exit.
      * Catches and displays exceptions.
     */
